@@ -70,7 +70,7 @@ for i in range(FAILED_ATTEMPTS):
     log_line = (
         f"{formatted_time} {HOSTNAME} "
         f"sshd[{process_id}]: Failed password "
-        f"for admin from {ATTACKER_IP} port {port} ssh2"
+        f"for ubuntu from {ATTACKER_IP} port {port} ssh2"
     )
 
     log_entries.append(log_line)
