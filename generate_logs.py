@@ -27,9 +27,12 @@ log_entries = []
 # PART 1: GENERATE 50 SUCCESSFUL LOGINS
 # ==========================================
 
+last_success_time = start_time
+
 for i in range(SUCCESSFUL_ATTEMPTS):
 
     timestamp = start_time + timedelta(minutes=i)
+    last_success_time = timestamp
 
     formatted_time = (
         f"{timestamp.strftime('%b')} "
@@ -55,8 +58,9 @@ for i in range(SUCCESSFUL_ATTEMPTS):
 
 for i in range(FAILED_ATTEMPTS):
 
-    timestamp = start_time + timedelta(
-        minutes=SUCCESSFUL_ATTEMPTS - 1 + ATTACK_GAP_MINUTES,
+    # Anchor to the last successful login so the gap holds if the success loop changes
+    timestamp = last_success_time + timedelta(
+        minutes=ATTACK_GAP_MINUTES,
         seconds=i * 8
     )
 
