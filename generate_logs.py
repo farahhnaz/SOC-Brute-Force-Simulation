@@ -55,7 +55,8 @@ for i in range(SUCCESSFUL_ATTEMPTS):
 for i in range(FAILED_ATTEMPTS):
 
     timestamp = start_time + timedelta(
-        minutes=SUCCESSFUL_ATTEMPTS + i
+        minutes=SUCCESSFUL_ATTEMPTS,
+        seconds=i * 8
     )
 
     formatted_time = (
