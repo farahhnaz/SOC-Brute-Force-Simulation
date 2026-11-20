@@ -13,6 +13,7 @@ ATTACKER_IP = "192.168.1.100"
 
 SUCCESSFUL_ATTEMPTS = 50
 FAILED_ATTEMPTS = 10
+ATTACK_GAP_MINUTES = 5  # quiet time between last normal login and first failure
 
 # Save auth.log in the same folder as this script
 LOG_FILE = Path(__file__).resolve().parent / "auth.log"
@@ -55,7 +56,7 @@ for i in range(SUCCESSFUL_ATTEMPTS):
 for i in range(FAILED_ATTEMPTS):
 
     timestamp = start_time + timedelta(
-        minutes=SUCCESSFUL_ATTEMPTS,
+        minutes=SUCCESSFUL_ATTEMPTS - 1 + ATTACK_GAP_MINUTES,
         seconds=i * 8
     )
 
